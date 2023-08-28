@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC.Dto;
 using MVC.Entity;
+using MVC.Models;
 using MVC.Service;
 using Newtonsoft.Json;
 
@@ -31,11 +32,8 @@ namespace MVC.Controllers
 
             if (login)
             {
-                var user = await _authService.GetUserName(loginDto.Email);
-                var allUser = await _authService.GetAllUser();
-                TempData["User"] = JsonConvert.SerializeObject(user);
-                TempData["Users"] = JsonConvert.SerializeObject(allUser);
-                return RedirectToAction("Dashboard", "Dashboard");
+
+	            return RedirectToAction("GetUserList", "User");
             }
 
             return RedirectToAction("Login", "Auth");

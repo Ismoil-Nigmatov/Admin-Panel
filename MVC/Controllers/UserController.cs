@@ -24,8 +24,7 @@ namespace MVC.Controllers
 		{
 			await UserRepository.DeleteUserAsync(id);
 			var allUsersAsync = await UserRepository.GetAllUsersAsync();
-			TempData["Users"] = JsonConvert.SerializeObject(allUsersAsync);
-			return RedirectToAction("Dashboard", "Dashboard");
+			return View("_UserTable");
 		}
 
         [HttpPost]
@@ -36,10 +35,14 @@ namespace MVC.Controllers
             userDto.Email = newEmail;
             await UserRepository.UpdateUserAsync(id , userDto);
             var allUsersAsync = await UserRepository.GetAllUsersAsync();
-            TempData["Users"] = JsonConvert.SerializeObject(allUsersAsync);
-			return RedirectToAction("Dashboard", "Dashboard");
+			return View("_UserTable", allUsersAsync);
         }
-        
+
+        public async Task<IActionResult> AddUser()
+        {
+			return View("_AddUser");
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddUser(string fullName, string newEmail, string newPassword)
         {
@@ -48,33 +51,51 @@ namespace MVC.Controllers
 			newUser.Email = newEmail;
 			newUser.Password = newPassword;
 			await UserRepository.AddUserAsync(newUser);
-            var allUsersAsync = await UserRepository.GetAllUsersAsync();
-            TempData["Users"] = JsonConvert.SerializeObject(allUsersAsync);
-			return RedirectToAction("Dashboard", "Dashboard");
+
+			var allUsersAsync = await UserRepository.GetAllUsersAsync();
+			return View("_UserTable", allUsersAsync);
         }
 
-        [HttpPost]
+        public async Task<IActionResult> GetUserCourses()
+        {
+
+	        return View("_UserCourse");
+        }
+		[HttpPost]
         public async Task<IActionResult> GetUserCourses(int id)
         {
 	        var userCourses = await UserRepository.GetUserCourses(id);
 
-			return PartialView("_UserCourseTable", userCourses);
+			return View("_UserCourseTable", userCourses);
         }
+        public async Task<IActionResult> GetUserFeedbacks()
+        {
 
-        [HttpPost]
+	        return View("_UserFeedback");
+        }
+		[HttpPost]
         public async Task<IActionResult> GetUserFeedbacks(int id)
         {
 	        var userFeedbacks = await _feedbackRepository.GetUserFeedbacks(id);
 
-	        return PartialView("_UserFeedbackTable", userFeedbacks);
+	        return View("_UserFeedbackTable", userFeedbacks);
         }
-
         [HttpPost]
         public async Task<IActionResult> GetUserResults(int id)
         {
 	        var userResults = await _resultRepository.GetUserResult(id);
 
-	        return PartialView("_UserResultTable", userResults);
+	        return View("_UserResultTable", userResults);
+        }
+        public async Task<IActionResult> GetUserResults()
+        {
+	        return View("_UserResult");
+        }
+        public async Task<IActionResult> GetUserList()
+        {
+	        var allUsersAsync = await UserRepository.GetAllUsersAsync();
+
+	        return View("_UserTable", allUsersAsync);
         }
 	}
 }
