@@ -1,0 +1,26 @@
+﻿@section Tabs{
+	<div class="tabs">
+		<a class="tab" data-tooltip="users" method="get" asp-controller="Course" asp-action="GetCourseList">
+			Courses
+		</a>
+		<a class="tab active" data-tooltip="adduser" method="get" asp-controller="Course" asp-action="AddCourse">
+			Add Course
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Course" asp-action="GetCourseById">
+			Edit Course
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Course" asp-action="DeleteCourse">
+			Delete Course
+		</a>
+	</div>
+}
+
+<form class="update-form" method="post" action="@Url.Action("AddCourse", "Course")">
+	<input type="text" name="imageUrl" class="input" placeholder="ImageUrl" />
+	<input type="text" name="description" class="input" placeholder="Description" />
+	<input type="text" name="price" class="input" placeholder="Price" />
+	<div class="btns">
+		<button class="confirm" type="submit">Confirm</button>
+		<button method="get" asp-controller="Course" asp-action="AddCourse" class="cancel">Cancel</button>
+	</div>
+</form>

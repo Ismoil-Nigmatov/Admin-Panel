@@ -1,0 +1,35 @@
+﻿@model List<MVC.Entity.Contact>
+
+@section Tabs {
+	<div class="tabs">
+		<a class="tab active" data-tooltip="users" method="get" asp-controller="Contact" asp-action="GetContacts">
+			Contacts
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Contact" asp-action="DeleteContact">
+			Delete Contact
+		</a>
+	</div>
+}
+
+<table class="user-table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>PhoneNumber</th>
+			<th>Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var contact in Model)
+		{
+			<tr>
+				<td>@contact.Id</td>
+				<td>@contact.Name</td>
+				<td>@contact.PhoneNumber</td>
+				<td>@contact.DateTime</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

@@ -1,0 +1,40 @@
+﻿@model MVC.Entity.Test
+
+@section Tabs{
+	<div class="tabs">
+		<a class="tab" data-tooltip="users" method="get" asp-controller="Test" asp-action="GetTests">
+			Tests
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Test" asp-action="AddTest">
+			Add Test
+		</a>
+		<a class="tab active" data-tooltip="usercourse" method="get" asp-controller="Test" asp-action="GetTestById">
+			Edit Test
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Test" asp-action="DeleteTest">
+			Delete Test
+		</a>
+	</div>
+}
+
+
+<form method="post" action="@Url.Action("UpdateTest", "Test")">
+	<input type="hidden" name="id" value="@Model.Id" />
+
+	<div class="update-form">
+		<label for="question">Question:</label>
+		<input type="text" class="input" id="question" name="question" value="@Model.Question" required>
+	</div>
+	<div class="update-form">
+		<label for="options">Options:</label>
+		@for (int i = 0; i < Model.Options.Count; i++)
+		{
+			<input type="text" class="input" name="options[@i]" value="@Model.Options[i]" required>
+		}
+	</div>
+	<div class="update-form">
+		<label for="right">Right Option:</label>
+		<input type="text" class="input" id="right" name="right" value="@Model.RightOption" required>
+	</div>
+	<button type="submit" class="confirm">Update Test</button>
+</form>

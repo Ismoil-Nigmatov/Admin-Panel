@@ -1,0 +1,36 @@
+﻿@section Tabs {
+	<div class="tabs">
+		<a class="tab" data-tooltip="users" method="get" asp-controller="Test" asp-action="GetTests">
+			Tests
+		</a>
+		<a class="tab active" data-tooltip="adduser" method="get" asp-controller="Test" asp-action="AddTest">
+			Add Test
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Test" asp-action="GetTestById">
+			Edit Test
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Test" asp-action="DeleteTest">
+			Delete Test
+		</a>
+	</div>
+}
+
+<form method="post" class="update-form" action="@Url.Action("AddTest", "Test")">
+	<div class="update-form">
+		<label for="question">Question:</label>
+		<input type="text" class="input" id="question" name="question" required>
+	</div>
+	<div class="update-form">
+		<label for="options">Options:</label>
+		<input type="text" class="input" id="option1" name="options[0]" required>
+		<input type="text" class="input" id="option2" name="options[1]" required>
+		<input type="text" class="input" id="option3" name="options[2]" required>
+		<input type="text" class="input" id="option4" name="options[3]" required>
+	</div>
+	<div class="update-form">
+		<label for="right">Right Option:</label>
+		<input type="text" class="input" id="right" name="right" required>
+	</div>
+	<button type="submit" class="confirm">Add Test</button>
+</form>
+

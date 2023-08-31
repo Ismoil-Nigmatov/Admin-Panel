@@ -1,0 +1,40 @@
+﻿@model List<MVC.Entity.Homework>
+
+@section Tabs {
+	<div class="tabs">
+		<a class="tab active" data-tooltip="users" method="get" asp-controller="Homework" asp-action="GetHomeworks">
+			Homeworks
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Homework" asp-action="AddHomework">
+			Add Homework
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Homework" asp-action="UpdateHomework">
+			Edit Homework
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Homework" asp-action="DeleteHomework">
+			Delete Homework
+		</a>
+	</div>
+}
+
+
+<table class="user-table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>URL</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var result in Model)
+		{
+			<tr>
+				<td>@result.Id</td>
+				<td>@result.ImageUrl</td>
+				<td>@result.Description</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

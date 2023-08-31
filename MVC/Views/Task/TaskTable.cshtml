@@ -1,0 +1,41 @@
+﻿@model List<MVC.Entity.Task>
+
+@section Tabs {
+	<div class="tabs">
+		<a class="tab active" data-tooltip="users" method="get" asp-controller="Task" asp-action="GetTaskList">
+			Tasks
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Task" asp-action="AddTask">
+			Add Task
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Task" asp-action="UpdateTask">
+			Edit Task
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Task" asp-action="DeleteTask">
+			Delete Task
+		</a>
+	</div>
+}
+
+<table class="user-table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Lesson</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var education in Model)
+		{
+			<tr>
+				<td>@education.Id</td>
+				<td>@education.Title</td>
+				<td>@education.Description</td>
+				<td>@education.Lesson.Title</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

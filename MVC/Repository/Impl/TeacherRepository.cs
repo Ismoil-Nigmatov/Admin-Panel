@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVC.Data;
+using MVC.Dto;
 using MVC.Entity;
 using Task = System.Threading.Tasks.Task;
 
@@ -16,24 +17,39 @@ namespace MVC.Repository.Impl
 			return _context.Teacher.ToListAsync();
 		}
 
-		public Task<Teacher> GetTeacherByIdAsync(int id)
+		public async Task<Teacher> GetTeacherByIdAsync(int id)
 		{
-			throw new NotImplementedException();
+			return await _context.Teacher.FirstOrDefaultAsync(u => u.Id == id) ?? throw new BadHttpRequestException("Teacher not found");
 		}
 
-		public Task AddTeacherAsync(Teacher teacher)
+		public async Task AddTeacherAsync(Teacher teacher)
 		{
-			throw new NotImplementedException();
+			_context.Teacher.Add(teacher);
+			await _context.SaveChangesAsync();
 		}
 
-		public Task UpdateTeacherAsync(Teacher teacher)
+		public async Task UpdateTeacherAsync(Teacher teacher)
 		{
-			throw new NotImplementedException();
+			var firstOrDefaultAsync = await _context.Teacher.FirstOrDefaultAsync(u => u.Id == teacher.Id);
+
+			if (firstOrDefaultAsync != null)
+			{
+				firstOrDefaultAsync.Name = teacher.Name;
+				firstOrDefaultAsync.ImageUrl = teacher.ImageUrl;
+				firstOrDefaultAsync.Type = teacher.Type;
+				_context.Entry(firstOrDefaultAsync).State = EntityState.Modified;
+				await _context.SaveChangesAsync();
+			}
 		}
 
-		public Task DeleteTeacherAsync(int id)
+		public async Task DeleteTeacherAsync(int id)
 		{
-			throw new NotImplementedException();
+			var teacher = await _context.Teacher.FindAsync(id);
+			if (teacher != null)
+			{
+				_context.Teacher.Remove(teacher);
+				await _context.SaveChangesAsync();
+			}
 		}
 	}
 }

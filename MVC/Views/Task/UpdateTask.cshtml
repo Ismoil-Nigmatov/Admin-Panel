@@ -1,0 +1,58 @@
+﻿@model MVC.Entity.Task
+
+<head>
+	<style>
+		option {
+			background: #1f1f1f;
+			color: white;
+		}
+	</style>
+</head>
+
+@section Tabs {
+	<div class="tabs">
+		<a class="tab " data-tooltip="users" method="get" asp-controller="Task" asp-action="GetTaskList">
+			Tasks
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Task" asp-action="AddTask">
+			Add Task
+		</a>
+		<a class="tab active" data-tooltip="usercourse" method="get" asp-controller="Task" asp-action="UpdateTask">
+			Edit Task
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Task" asp-action="DeleteTask">
+			Delete Task
+		</a>
+	</div>
+}
+
+
+<h2>Edit AboutCourse Information</h2>
+
+<form action="@Url.Action("UpdateTask", "Task")" method="post">
+	<input type="hidden" name="id" value="@Model.Id" />
+
+	<div>
+		<input class="input" type="text" id="title" name="title" value="@Model.Title" />
+	</div>
+
+	<div>
+		<input class="input" type="text" id="end" name="description" value="@Model.Description" />
+	</div>
+
+	<label for="lessonId">Select a Course:</label>
+	<select class="form-control" id="lessonId" name="lessonId" style="background:none; color:white; padding:5px; margin-left:5px;margin-top:20px">
+		<option value="@Model.Lesson.Id">@Model.Lesson.Title"</option>
+		@foreach (var lesson in ViewBag.Lessons)
+		{
+			if (lesson.Title != Model.Lesson.Title)
+			{
+				<option value="@lesson.Id">@lesson.Title</option>
+			}
+		}
+	</select>
+
+	<div>
+		<button type="submit" style="margin-top:20px" class="confirm">Update</button>
+	</div>
+</form>

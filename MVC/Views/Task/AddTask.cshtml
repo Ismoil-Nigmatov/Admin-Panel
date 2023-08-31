@@ -1,0 +1,40 @@
+﻿@section Tabs {
+	<div class="tabs">
+		<a class="tab" data-tooltip="users" method="get" asp-controller="Task" asp-action="GetTaskList">
+			Tasks
+		</a>
+		<a class="tab active" data-tooltip="adduser" method="get" asp-controller="Task" asp-action="AddTask">
+			Add Task
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Task" asp-action="UpdateTask">
+			Edit Task
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Task" asp-action="DeleteTask">
+			Delete Task
+		</a>
+	</div>
+}
+<head>
+	<style>
+		option{
+			background: #1f1f1f;
+			color:white;
+		}
+	</style>
+</head>
+<form class="update-form" method="post" action="@Url.Action("AddTask", "Task")">
+	<label for="LessonId">Select a Course:</label>
+	<select class="form-control" id="LessonId" name="lessonId" style="background:none; color:white; padding:5px; margin-left:5px;">
+		<option value="">Select a course</option>
+		@foreach (var lesson in ViewBag.Lessons)
+		{
+			<option value="@lesson.Id">@lesson.Title</option>
+		}
+	</select>
+	<input type="text" name="title" class="input" placeholder="Title" />
+	<input type="text" name="description" class="input" placeholder="Description" />
+	<div class="btns">
+		<button class="confirm" type="submit">Confirm</button>
+		<button method="get" asp-controller="Task" asp-action="GetTaskList" class="cancel">Cancel</button>
+	</div>
+</form>

@@ -1,14 +1,31 @@
 ﻿@model List<MVC.Entity.Teacher>
 
+@section Tabs{
+    <div class="tabs">
+        <a class="tab active" data-tooltip="users" method="get" asp-controller="Teacher" asp-action="GetTeacherList">
+            Teachers
+        </a>
+        <a class="tab" data-tooltip="adduser" method="get" asp-controller="Teacher" asp-action="GetTeacherAdd">
+            Add Teacher
+        </a>
+        <a class="tab" data-tooltip="usercourse" method="get" asp-controller="Teacher" asp-action="GetTeacherById">
+            Edit Teacher
+        </a>
+        <a class="tab" data-tooltip="userresult" method="get" asp-controller="Teacher" asp-action="DeleteTeacher">
+            Delete Teacher
+        </a>
+    </div>
+}
+
 <head>
 	<style>
-        .card {
-            width: 409px;
-            height: 380px;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
+            .card {
+                width: 409px;
+                height: 380px;
+                border-radius: 20px;
+                overflow: hidden;
+                position: relative;
+            }
 
             .card section img {
                 position: absolute;
@@ -62,7 +79,7 @@
         }
 	</style>
 </head>
-<div style="display:flex; justify-content:space-between">
+<div style="display:flex; justify-content:space-around ; flex-wrap:wrap ; width:1046px; gap:20px">
 	@foreach (var teacher in Model)
 	{
 		<div class="card">
@@ -74,7 +91,7 @@
 					<i class="bi bi-person-circle"></i>
 				</div>
 				<div>
-					<p>@teacher.Id</p>
+					<p>Id:@teacher.Id</p>
 					<h4>@teacher.Name</h4>
 					<p>@teacher.Type</p>
 				</div>

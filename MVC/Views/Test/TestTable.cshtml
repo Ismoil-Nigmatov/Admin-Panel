@@ -1,0 +1,50 @@
+﻿@model List<MVC.Entity.Test>
+
+@section Tabs {
+	<div class="tabs">
+		<a class="tab active" data-tooltip="users" method="get" asp-controller="Test" asp-action="GetTests">
+			Tests
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Test" asp-action="AddTest">
+			Add Test
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Test" asp-action="GetTestById">
+			Edit Test
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Test" asp-action="DeleteTest">
+			Delete Test
+		</a>
+	</div>
+}
+
+<table class="user-table">
+	<thead>
+	<tr>
+		<th>Id</th>
+		<th>Question</th>
+		<th>Options</th>
+		<th>Right Option</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var test in Model)
+	{
+		<tr>
+			<td>@test.Id</td>
+			<td>@test.Question</td>
+			<td>
+				<ul>
+					@foreach (var option in test.Options)
+					{
+						<li>@option</li>
+					}
+				</ul>
+			</td>
+			<td>@test.RightOption</td>
+		</tr>
+	}
+	</tbody>
+</table>
+
+
+

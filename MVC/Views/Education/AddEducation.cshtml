@@ -1,0 +1,41 @@
+﻿@section Tabs {
+	<div class="tabs">
+		<a class="tab" data-tooltip="users" method="get" asp-controller="Education" asp-action="GetEducationList">
+			AboutCourse
+		</a>
+		<a class="tab active" data-tooltip="adduser" method="get" asp-controller="Education" asp-action="AddEducation">
+			Add AboutCourse
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Education" asp-action="UpdateEducation">
+			Edit AboutCourse
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Education" asp-action="DeleteEducation">
+			Delete AboutCourse
+		</a>
+	</div>
+}
+<head>
+	<style>
+		option{
+			background: #1f1f1f;
+			color:white;
+		}
+	</style>
+</head>
+<form class="update-form" method="post" action="@Url.Action("AddEducation", "Education")">
+	<label for="CourseId">Select a Course:</label>
+	<select class="form-control" id="CourseId" name="courseId" style="background:none; color:white; padding:5px; margin-left:5px;">
+		<option value="">Select a course</option>
+		@foreach (var course in ViewBag.CourseList)
+		{
+			<option value="@course.Id">@course.Description</option>
+		}
+	</select>
+	<input type="text" name="title" class="input" placeholder="Title" />
+	<input type="text" name="end" class="input" placeholder="End" />
+	<input type="text" name="description" class="input" placeholder="Description" />
+	<div class="btns">
+		<button class="confirm" type="submit">Confirm</button>
+		<button method="get" asp-controller="Education" asp-action="GetEducationList" class="cancel">Cancel</button>
+	</div>
+</form>

@@ -88,6 +88,11 @@
 				background-color: #1f1f1f;
 			}
 
+
+			.active{
+				color:white;
+			}
+
 		.update-form{
 			display:flex;
 			flex-direction: column;
@@ -433,7 +438,7 @@
 				}
 
 		.tabs {
-			display: none;
+			display:flex;
 			justify-content: space-between;
 			color: var(--c-text-tertiary);
 			border-bottom: 1px solid var(--c-gray-600);
@@ -1112,38 +1117,7 @@
 					</div>
 				</div>
 				<div class="app-header-navigation">
-					<div class="tabs tabs--active">
-						<a class="tab" data-tooltip="users" method="get" asp-controller="User" asp-action="GetUserList">
-							Users
-						</a>
-						<a class="tab" data-tooltip="adduser" method="get" asp-controller="User" asp-action="AddUser">
-							Add User
-						</a>
-						<a class="tab" data-tooltip="usercourse" method="get" asp-controller="User" asp-action="GetUserCourses">
-							User Courses
-						</a>
-						<a class="tab" data-tooltip="userresult" method="get" asp-controller="User" asp-action="GetUserResults">
-							User Result
-						</a>
-						<a class="tab" data-tooltip="userfeedback" method="get" asp-controller="User" asp-action="GetUserFeedbacks">
-							User Feedback
-						</a>
-					</div>
-					
-					<div class="tabs">
-						<a class="tab" data-tooltip="users" method="get" asp-controller="User" asp-action="GetUserList">
-							Teachers
-						</a>
-						<a class="tab" data-tooltip="adduser" method="get" asp-controller="User" asp-action="AddUser">
-							Add Teacher
-						</a>
-						<a class="tab" data-tooltip="usercourse" method="get" asp-controller="User" asp-action="GetUserCourses">
-							Edit Teacher
-						</a>
-						<a class="tab" data-tooltip="userresult" method="get" asp-controller="User" asp-action="GetUserResults">
-							Delete Teacher
-						</a>
-					</div>
+					@RenderSection("Tabs", required: false)
 				</div>
 				<div class="app-header-actions">
 					<button class="user-profile">
@@ -1169,37 +1143,28 @@
 						<a class="a" data-tooltip="teacher" asp-controller="Teacher" asp-action="GetTeacherList">
 							<span>Teacher</span>
 						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Course" asp-action="GetCourseList">
 							<span>Course</span>
 						</a>
-						<a href="#" class="a">
-							<span>Education</span>
-						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Education" asp-action="GetEducationList">
 							<span>AboutCourse</span>
 						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Lesson" asp-action="GetLessons">
 							<span>Lesson</span>
 						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Homework" asp-action="GetHomeworks">
 							<span>Homework</span>
 						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Task" asp-action="GetTaskList">
 							<span>Task</span>
 						</a>
-						<a href="#" class="a">
-							<span>TaskAnswer</span>
-						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Test" asp-action="GetTests">
 							<span>Test</span>
 						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Contact" asp-action="GetContacts">
 							<span>Contact</span>
 						</a>
-						<a href="#" class="a">
-							<span>Feedback</span>
-						</a>
-						<a href="#" class="a">
+						<a class="a" asp-controller="Result" asp-action="GetResults">
 							<span>Result</span>
 						</a>
 					</nav>
@@ -1266,32 +1231,6 @@
 					cancelButtons[index].classList.add("hide");
 				}
 			});
-
-			const a = document.querySelectorAll('.a');
-
-			a.forEach(tab => {
-				tab.addEventListener('click', change);
-			})
-
-			function change(evt){
-				const target = evt.currentTarget;
-				const data = target.getAttribute('data-tooltip');
-				console.log(data);
-				if(data === 'user'){
-					const tabs = document.querySelectorAll('.tabs');
-					tabs.forEach(tab => {
-						tab.classList.remove('tabs--active')
-					})
-					tabs[0].classList.add('tabs--active');
-				}
-				else if(data === 'teacher'){
-					const tabs = document.querySelectorAll('.tabs');
-					tabs.forEach(tab => {
-						tab.classList.remove('tabs--active')
-					})
-					tabs[1].classList.add('tabs--active');
-				}
-			}
 	</script>
 	@await RenderSectionAsync("Scripts", required: false)
 	</body>

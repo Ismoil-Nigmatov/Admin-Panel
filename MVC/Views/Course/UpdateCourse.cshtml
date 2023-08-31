@@ -1,0 +1,39 @@
+﻿@model MVC.Entity.Course
+@section Tabs{
+	<div class="tabs">
+		<a class="tab" data-tooltip="users" method="get" asp-controller="Course" asp-action="GetCourseList">
+			Courses
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Course" asp-action="AddCourse">
+			Add Course
+		</a>
+		<a class="tab active" data-tooltip="usercourse" method="get" asp-controller="Course" asp-action="GetCourseById">
+			Edit Course
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Course" asp-action="DeleteCourse">
+			Delete Course
+		</a>
+	</div>
+}
+
+<h2>Edit Teacher Information</h2>
+
+<form action="@Url.Action("UpdateCourse", "Course")" method="post">
+	<input type="hidden" name="id" value="@Model.Id" />
+
+	<div>
+		<input class="input" type="text" id="Name" name="image" value="@Model.ImageUrl" />
+	</div>
+
+	<div>
+		<input class="input" type="text" id="ImgUrl" name="description" value="@Model.Description" />
+	</div>
+
+	<div>
+		<input class="input" type="text" id="Type" name="price" value="@Model.Price" />
+	</div>
+
+	<div>
+		<button type="submit" style="margin-top:20px" class="confirm">Update</button>
+	</div>
+</form>

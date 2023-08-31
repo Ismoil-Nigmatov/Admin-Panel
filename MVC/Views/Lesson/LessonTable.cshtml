@@ -1,0 +1,42 @@
+﻿@model List<MVC.Entity.Lesson>
+
+@section Tabs {
+	<div class="tabs">
+		<a class="tab active" data-tooltip="users" method="get" asp-controller="Lesson" asp-action="GetLessons">
+			Lessons
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Lesson" asp-action="AddLesson">
+			Add Lesson
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Lesson" asp-action="UpdateLesson">
+			Edit Lesson
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Lesson" asp-action="DeleteLesson">
+			Delete Lesson
+		</a>
+	</div>
+}
+
+<table class="user-table">
+	<thead>
+	<tr>
+		<th>Id</th>
+		<th>Title</th>
+		<th>VideoUrl</th>
+		<th>Information</th>
+		<th>Course Name</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var lesson in Model)
+	{
+		<tr>
+			<td>@lesson.Id</td>
+			<td>@lesson.Title</td>
+			<td>@lesson.VideoUrl</td>
+			<td>@lesson.Information</td>
+			<td>@lesson.Course.Description</td>
+		</tr>
+	}
+	</tbody>
+</table>

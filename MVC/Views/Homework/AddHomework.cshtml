@@ -1,0 +1,34 @@
+﻿@section Tabs {
+	<div class="tabs">
+		<a class="tab " data-tooltip="users" method="get" asp-controller="Homework" asp-action="GetHomeworks">
+			Homeworks
+		</a>
+		<a class="tab active" data-tooltip="adduser" method="get" asp-controller="Homework" asp-action="AddHomework">
+			Add Homework
+		</a>
+		<a class="tab" data-tooltip="usercourse" method="get" asp-controller="Homework" asp-action="UpdateHomework">
+			Edit Homework
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Homework" asp-action="DeleteHomework">
+			Delete Homework
+		</a>
+	</div>
+}
+
+
+<form class="update-form" method="post" action="@Url.Action("AddHomework", "Homework")">
+	<select class="form-control" name="taskId" required>
+		<option value="">Select a task</option>
+		@foreach (var task in ViewBag.TaskList)
+		{
+			<option value="@task.Id">@task.Title</option>
+		}
+	</select>
+	<input type="text" name="image" class="input" placeholder="ImageUrl" />
+	<input type="text" name="description" class="input" placeholder="Description" />
+	<div class="btns">
+		<button class="confirm" type="submit">Confirm</button>
+		<a asp-controller="Homework" asp-action="GetHomeworks" class="cancel">Cancel</a>
+	</div>
+</form>
+

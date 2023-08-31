@@ -1,5 +1,25 @@
 ﻿@model MVC.Entity.User
 
+@section Tabs {
+    <div class="tabs">
+        <a class="tab" data-tooltip="users" method="get" asp-controller="User" asp-action="GetUserList">
+            Users
+        </a>
+        <a class="tab" data-tooltip="adduser" method="get" asp-controller="User" asp-action="AddUser">
+            Add User
+        </a>
+        <a class="tab" data-tooltip="usercourse" method="get" asp-controller="User" asp-action="GetUserCourses">
+            User Courses
+        </a>
+        <a class="tab" data-tooltip="userresult" method="get" asp-controller="User" asp-action="GetUserResults">
+            User Result
+        </a>
+        <a class="tab" data-tooltip="userfeedback" method="get" asp-controller="User" asp-action="GetUserFeedbacks">
+            User Feedback
+        </a>
+    </div>
+}
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

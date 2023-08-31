@@ -7,7 +7,5 @@ namespace MVC.Models
 	{
 		public User CurrentUser { get; set; }
 		public List<User> AllUsers { get; set; }
-		public List<CourseDTO> Courses { get; set; }
-		public string State { get; set; }
 	}
 }

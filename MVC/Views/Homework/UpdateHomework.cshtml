@@ -1,0 +1,49 @@
+﻿@model MVC.Entity.Homework
+@section Tabs {
+	<div class="tabs">
+		<a class="tab" data-tooltip="users" method="get" asp-controller="Homework" asp-action="GetHomeworks">
+			Homeworks
+		</a>
+		<a class="tab" data-tooltip="adduser" method="get" asp-controller="Homework" asp-action="AddHomework">
+			Add Homework
+		</a>
+		<a class="tab active" data-tooltip="usercourse" method="get" asp-controller="Homework" asp-action="UpdateHomework">
+			Edit Homework
+		</a>
+		<a class="tab" data-tooltip="userresult" method="get" asp-controller="Homework" asp-action="DeleteHomework">
+			Delete Homework
+		</a>
+	</div>
+}
+
+<head>
+	<style>
+		option {
+			background: #1f1f1f;
+			color: white;
+		}
+	</style>
+</head>
+
+<h2>Edit Teacher Information</h2>
+
+<form class="update-form" method="post" action="@Url.Action("UpdateHomework", "Homework")">
+	<input type="hidden" name="id" value="@Model.Id" /> <!-- Hidden field for homework ID -->
+
+	<select class="form-control" name="taskId" required style="background:none; color:white; padding:5px; margin-left:5px;margin-top:20px">
+		<option value="@Model.Task.Id">@Model.Task.Title</option>
+		@foreach (var task in ViewBag.TaskList)
+		{
+			if (task.Title != Model.Task.Title)
+			{
+				<option value="@task.Id">@task.Title</option>
+			}
+		}
+	</select>
+	<input type="text" name="image" class="input" value="@Model.ImageUrl" placeholder="ImageUrl" />
+	<input type="text" name="description" class="input" value="@Model.Description" placeholder="Description" />
+	<div class="btns">
+		<button class="confirm" type="submit">Update</button>
+		<a asp-controller="Homework" asp-action="GetHomeworks" class="cancel">Cancel</a>
+	</div>
+</form>
