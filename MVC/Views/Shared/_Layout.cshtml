@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MVC</title>
 	<meta charset="UTF-8">
+	
+    <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
 
-
-	<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
 
 	<meta name="apple-mobile-web-app-title" content="CodePen">
 
@@ -60,6 +61,7 @@
 			color: var(--c-text-primary);
 			display: flex;
 			justify-content: center;
+			overflow:hidden;
 		}
 
 		.pb-3 {
@@ -91,6 +93,16 @@
 
 			.active{
 				color:white;
+			}
+
+
+			.service-section{
+				height:600px;
+				overflow:auto;
+			}
+			
+			.service-section::-webkit-scrollbar{
+				width:0;
 			}
 
 		.update-form{
@@ -1103,85 +1115,87 @@
 <body>
 
 	<body translate="no">
-		<div class="app">
-			<header class="app-header">
-				<div class="app-header-logo">
-					<div class="logo">
-						<span class="logo-icon">
-							<img src="https://assets.codepen.io/285131/almeria-logo.svg" />
-						</span>
-						<h1 class="logo-title">
-							<span>MDY</span>
-							<span>Admin</span>
-						</h1>
-					</div>
-				</div>
-				<div class="app-header-navigation">
-					@RenderSection("Tabs", required: false)
-				</div>
-				<div class="app-header-actions">
-					<button class="user-profile">
-						<span>Ismoil Nigmatov</span>
-						<span>
-							<i style="width: 42px; height: 42px; border-radius:50px; padding-top : 20px ;border: 1px solid grey" class="fa-regular fa-user fa-xl"></i>
-						</span>
-					</button>
-				</div>
-				<div class="app-header-mobile">
-					<button class="icon-button large">
-						<i class="ph-list"></i>
-					</button>
-				</div>
+    <div class="app">
+        <header class="app-header">
+            <div class="app-header-logo">
+                <div class="logo">
+                    <span class="logo-icon">
+                        <img src="https://assets.codepen.io/285131/almeria-logo.svg" />
+                    </span>
+                    <h1 class="logo-title">
+                        <span>MDY</span>
+                        <span>Admin</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="app-header-navigation">
+                @RenderSection("Tabs", required: false)
+            </div>
+            <div class="app-header-actions">
+                <button class="user-profile">
+                    <span>Ismoil Nigmatov</span>
+                    <span>
+                        <i style="width: 42px; height: 42px; border-radius:50px; padding-top : 20px ;border: 1px solid grey" class="fa-regular fa-user fa-xl"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="app-header-mobile">
+                <button class="icon-button large">
+                    <i class="ph-list"></i>
+                </button>
+            </div>
 
-			</header>
-			<div class="app-body">
-				<div class="app-body-navigation">
-					<nav class="navigation">
-						<a class="a" data-tooltip="user" asp-controller="User" asp-action="GetUserList">
-							<span>User</span>
-						</a>
-						<a class="a" data-tooltip="teacher" asp-controller="Teacher" asp-action="GetTeacherList">
-							<span>Teacher</span>
-						</a>
-						<a class="a" asp-controller="Course" asp-action="GetCourseList">
-							<span>Course</span>
-						</a>
-						<a class="a" asp-controller="Education" asp-action="GetEducationList">
-							<span>AboutCourse</span>
-						</a>
-						<a class="a" asp-controller="Lesson" asp-action="GetLessons">
-							<span>Lesson</span>
-						</a>
-						<a class="a" asp-controller="Homework" asp-action="GetHomeworks">
-							<span>Homework</span>
-						</a>
-						<a class="a" asp-controller="Task" asp-action="GetTaskList">
-							<span>Task</span>
-						</a>
-						<a class="a" asp-controller="Test" asp-action="GetTests">
-							<span>Test</span>
-						</a>
-						<a class="a" asp-controller="Contact" asp-action="GetContacts">
-							<span>Contact</span>
-						</a>
-						<a class="a" asp-controller="Result" asp-action="GetResults">
-							<span>Result</span>
-						</a>
-					</nav>
-					<footer class="footer">
-						<div>
-							MDY ©<br />
-							All Rights Reserved 2023
-						</div>
-					</footer>
-				</div>
-				<div class="app-body-main-content">
-					<section class="service-section">
-						@RenderBody()
-					</section>
-				</div>
-			</div>
-		</div>
+        </header>
+        <div class="app-body">
+            <div class="app-body-navigation">
+                <nav class="navigation">
+                    <a class="a" data-tooltip="user" asp-controller="User" asp-action="GetUserList">
+                        <span>User</span>
+                    </a>
+                    <a class="a" data-tooltip="teacher" asp-controller="Teacher" asp-action="GetTeacherList">
+                        <span>Teacher</span>
+                    </a>
+                    <a class="a" asp-controller="Course" asp-action="GetCourseList">
+                        <span>Course</span>
+                    </a>
+                    <a class="a" asp-controller="Education" asp-action="GetEducationList">
+                        <span>AboutCourse</span>
+                    </a>
+                    <a class="a" asp-controller="Lesson" asp-action="GetLessons">
+                        <span>Lesson</span>
+                    </a>
+                    <a class="a" asp-controller="Homework" asp-action="GetHomeworks">
+                        <span>Homework</span>
+                    </a>
+                    <a class="a" asp-controller="Task" asp-action="GetTaskList">
+                        <span>Task</span>
+                    </a>
+                    <a class="a" asp-controller="Test" asp-action="GetTests">
+                        <span>Test</span>
+                    </a>
+                    <a class="a" asp-controller="Contact" asp-action="GetContacts">
+                        <span>Contact</span>
+                    </a>
+                    <a class="a" asp-controller="Result" asp-action="GetResults">
+                        <span>Result</span>
+                    </a>
+                </nav>
+                <footer class="footer">
+                    <div>
+                        MDY ©<br />
+                        All Rights Reserved 2023
+                    </div>
+                </footer>
+            </div>
+            <div class="app-body-main-content">
+                <section class="service-section">
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/mvc-grid/mvc-grid.js"></script>
+    <script>document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));</script>
 	<script id="rendered-js">
 			document.addEventListener("DOMContentLoaded", function () {
 				const updateButtons = document.querySelectorAll(".btn-update");

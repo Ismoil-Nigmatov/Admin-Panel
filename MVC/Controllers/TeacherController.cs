@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVC.Dto;
 using MVC.Entity;
 using MVC.Repository;
 using MVC.Repository.Impl;
@@ -27,12 +28,12 @@ namespace MVC.Controllers
 			return View("_AddTeacher");
 		}
 		[HttpPost]
-		public async Task<IActionResult> AddTeacher(string fullName, string imgUrl, string type)
+		public async Task<IActionResult> AddTeacher(TeacherDTO teacherDto)
 		{
 			Teacher teacher = new Teacher();
-			teacher.Name = fullName;
-			teacher.ImageUrl = imgUrl;
-			teacher.Type = type;
+			teacher.Name = teacherDto.Name;
+			teacher.ImageUrl = teacherDto.imgUrl;
+			teacher.Type = teacherDto.Type;
 			await _teacherRepository.AddTeacherAsync(teacher);
 
 			var allTeacherAsync = await _teacherRepository.GetAllTeacherAsync();
@@ -51,13 +52,13 @@ namespace MVC.Controllers
 			return View("_GetTeacher");
 		}
 		[HttpPost]
-		public async Task<IActionResult> UpdateTeacher(int id, string name, string imgUrl ,string type)
+		public async Task<IActionResult> UpdateTeacher(TeacherDTO teacherDto)
 		{
 			Teacher teacher = new Teacher();
-			teacher.Name = name;
-			teacher.ImageUrl = imgUrl;
-			teacher.Type = type;
-			teacher.Id = id;
+			teacher.Name = teacherDto.Name;
+			teacher.ImageUrl = teacherDto.imgUrl;
+			teacher.Type = teacherDto.Type;
+			teacher.Id = teacherDto.Id;
 			await _teacherRepository.UpdateTeacherAsync(teacher);
 			var allTeacherAsync = await _teacherRepository.GetAllTeacherAsync();
 			return View("_TeacherCard", allTeacherAsync);

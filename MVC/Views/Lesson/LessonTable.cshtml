@@ -1,5 +1,4 @@
-﻿@model List<MVC.Entity.Lesson>
-
+﻿
 @section Tabs {
 	<div class="tabs">
 		<a class="tab active" data-tooltip="users" method="get" asp-controller="Lesson" asp-action="GetLessons">
@@ -17,26 +16,22 @@
 	</div>
 }
 
-<table class="user-table">
-	<thead>
-	<tr>
-		<th>Id</th>
-		<th>Title</th>
-		<th>VideoUrl</th>
-		<th>Information</th>
-		<th>Course Name</th>
-	</tr>
-	</thead>
-	<tbody>
-	@foreach (var lesson in Model)
-	{
-		<tr>
-			<td>@lesson.Id</td>
-			<td>@lesson.Title</td>
-			<td>@lesson.VideoUrl</td>
-			<td>@lesson.Information</td>
-			<td>@lesson.Course.Description</td>
-		</tr>
-	}
-	</tbody>
-</table>
+
+@using NonFactors.Mvc.Grid
+@model List<MVC.Entity.Lesson>
+
+	
+<div class="user-table">
+    <script>
+            console.log(model);
+        </script>
+    @(Html.Grid(Model).Build(columns =>
+    {
+        columns.Add(model => model.Id).Titled("Id").Filterable(true).Sortable(true);
+        columns.Add(model => model.Title).Titled("Title").Filterable(true).Sortable(true);
+        columns.Add(model => model.VideoUrl).Titled("VideoUrl").Filterable(true).Sortable(true);
+        columns.Add(model => model.Information).Titled("Information").Filterable(true).Sortable(true);
+        columns.Add(model => model.Course.Description).Titled("Course Name").Filterable(true).Sortable(true);
+    })
+        )
+</div>

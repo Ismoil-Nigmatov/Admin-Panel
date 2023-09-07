@@ -65,11 +65,13 @@
 </head>
 <body>
 <form class="update-form" method="post" action="@Url.Action("UpdateUser", "User")">
-	<input type="hidden" name="id" value="@Model.Id" />
-	<input type="text" name="newFullName" value="@Model.FullName" class="input" />
-	<input type="text" name="newEmail" value="@Model.Email" class="input" />
-	<input type="text" name="newPassword" value="@Model.Password" class="input" />
-	<button class="btn-confirm" type="submit">Confirm</button>
-	<button class="btn-cancel">Cancel</button>
+    <input type="hidden" name="id" value="@Model.Id" />
+    <input type="text" name="newFullName" value="@Model.FullName" class="input" />
+    <input type="text" name="newEmail" value="@Model.Email" class="input" />
+    <input type="text" name="newPassword" value="@Model.Password" class="input" />
+    <button class="btn-confirm" type="submit">Confirm</button>
+    <button class="btn-cancel">Cancel</button>
 </form>
+
+
 </body>

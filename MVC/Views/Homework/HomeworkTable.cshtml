@@ -1,5 +1,4 @@
-﻿@model List<MVC.Entity.Homework>
-
+﻿
 @section Tabs {
 	<div class="tabs">
 		<a class="tab active" data-tooltip="users" method="get" asp-controller="Homework" asp-action="GetHomeworks">
@@ -18,23 +17,21 @@
 }
 
 
-<table class="user-table">
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>URL</th>
-			<th>Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var result in Model)
-		{
-			<tr>
-				<td>@result.Id</td>
-				<td>@result.ImageUrl</td>
-				<td>@result.Description</td>
-			</tr>
-		}
-	</tbody>
-</table>
+@using NonFactors.Mvc.Grid
+@model List<MVC.Entity.Homework>
+
+	
+<div class="user-table">
+    <script>
+            console.log(model);
+        </script>
+    @(Html.Grid(Model).Build(columns =>
+    {
+        columns.Add(model => model.Id).Titled("Id").Filterable(true).Sortable(true);
+        columns.Add(model => model.ImageUrl).Titled("URL").Filterable(true).Sortable(true);
+        columns.Add(model => model.Description).Titled("Description").Filterable(true).Sortable(true);
+
+    })
+        )
+</div>
 

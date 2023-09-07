@@ -27,26 +27,27 @@ namespace MVC.Controllers
 			return View("_UserTable");
 		}
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateUser(int id, string newFullName, string newEmail)
-        {
-            UserDTO userDto = new UserDTO();
+		[HttpPost]
+		public async Task<IActionResult> UpdateUser(int id, string newFullName, string newEmail)
+		{
+			UserDTO userDto = new UserDTO();
 			userDto.FullName = newFullName;
-            userDto.Email = newEmail;
-            await UserRepository.UpdateUserAsync(id , userDto);
-            var allUsersAsync = await UserRepository.GetAllUsersAsync();
+			userDto.Email = newEmail;
+			await UserRepository.UpdateUserAsync(id, userDto);
+			var allUsersAsync = await UserRepository.GetAllUsersAsync();
 			return View("_UserTable", allUsersAsync);
-        }
+		}
 
-        public async Task<IActionResult> AddUser()
+
+		public async Task<IActionResult> AddUser()
         {
 			return View("_AddUser");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddUser(string fullName, string newEmail, string newPassword)
-        {
-	        Entity.User newUser = new User();
+		[HttpPost]
+		public async Task<IActionResult> AddUser(string fullName, string newEmail, string newPassword)
+		{
+			Entity.User newUser = new User();
 			newUser.FullName = fullName;
 			newUser.Email = newEmail;
 			newUser.Password = newPassword;
@@ -54,9 +55,9 @@ namespace MVC.Controllers
 
 			var allUsersAsync = await UserRepository.GetAllUsersAsync();
 			return View("_UserTable", allUsersAsync);
-        }
+		}
 
-        public async Task<IActionResult> GetUserCourses()
+		public async Task<IActionResult> GetUserCourses()
         {
 
 	        return View("_UserCourse");

@@ -1,4 +1,4 @@
-﻿@model List<MVC.Entity.Contact>
+﻿
 
 @section Tabs {
 	<div class="tabs">
@@ -11,25 +11,22 @@
 	</div>
 }
 
-<table class="user-table">
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Name</th>
-			<th>PhoneNumber</th>
-			<th>Time</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var contact in Model)
-		{
-			<tr>
-				<td>@contact.Id</td>
-				<td>@contact.Name</td>
-				<td>@contact.PhoneNumber</td>
-				<td>@contact.DateTime</td>
-			</tr>
-		}
-	</tbody>
-</table>
+@using NonFactors.Mvc.Grid
+@model List<MVC.Entity.Contact>
+
+	
+<div class="user-table">
+    <script>
+            console.log(model);
+        </script>
+    @(Html.Grid(Model).Build(columns =>
+    {
+        columns.Add(model => model.Id).Titled("Id").Filterable(true).Sortable(true);
+        columns.Add(model => model.Name).Titled("Name").Filterable(true).Sortable(true);
+        columns.Add(model => model.PhoneNumber).Titled("PhoneNumber").Filterable(true).Sortable(true);
+        columns.Add(model => model.DateTime).Titled("DateTime").Filterable(true).Sortable(true);
+
+            })
+        )
+</div>
 

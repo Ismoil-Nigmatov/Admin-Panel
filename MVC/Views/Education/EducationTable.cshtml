@@ -1,4 +1,4 @@
-﻿@model List<MVC.Entity.Education>
+﻿
 
 @section Tabs {
 	<div class="tabs">
@@ -17,26 +17,20 @@
 	</div>
 }
 
-<table class="user-table">
-	<thead>
-	<tr>
-		<th>Id</th>
-		<th>Title</th>
-		<th>End</th>
-		<th>Description</th>
-		<th>Course Name</th>
-	</tr>
-	</thead>
-	<tbody>
-	@foreach (var education in Model)
-	{
-		<tr>
-			<td>@education.Id</td>
-			<td>@education.Title</td>
-			<td>@education.End</td>
-			<td>@education.Description</td>
-			<td>@education.Course.Description</td>
-		</tr>
-	}
-	</tbody>
-</table>
+@using NonFactors.Mvc.Grid
+@model List<MVC.Entity.Education>
+
+	
+<div class="user-table">
+    <script>
+            console.log(model);
+        </script>
+    @(Html.Grid(Model).Build(columns =>
+    {
+        columns.Add(model => model.Id).Titled("Id").Filterable(true).Sortable(true);
+        columns.Add(model => model.Title).Titled("FullName").Filterable(true).Sortable(true);
+        columns.Add(model => model.Description).Titled("Email").Filterable(true).Sortable(true);
+        columns.Add(model => model.Course.Description).Titled("Email").Filterable(true).Sortable(true);
+
+    }))
+</div>
